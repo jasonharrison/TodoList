@@ -1,10 +1,11 @@
 class TodosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
 
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
+    @todos = current_user.todos.all
   end
 
   # GET /todos/1
@@ -14,7 +15,7 @@ class TodosController < ApplicationController
 
   # GET /todos/new
   def new
-    @todo = Todo.new
+    @todo = current_user.todos.new
   end
 
   # GET /todos/1/edit
@@ -24,7 +25,7 @@ class TodosController < ApplicationController
   # POST /todos
   # POST /todos.json
   def create
-    @todo = Todo.new(todo_params)
+    @todo = current_user.todos.new(todo_params)
 
     respond_to do |format|
       if @todo.save
@@ -54,7 +55,7 @@ class TodosController < ApplicationController
   # DELETE /todos/1
   # DELETE /todos/1.json
   def destroy
-    @todo.destroy
+    current_user.todos.destroy
     respond_to do |format|
       format.html { redirect_to todos_url, notice: 'Todo was successfully destroyed.' }
       format.json { head :no_content }
@@ -64,11 +65,11 @@ class TodosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo
-      @todo = Todo.find(params[:id])
+      @todo = current_user.todos.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:user_id, :done, :content)
+      params.require(:todo).permit(:done, :content)
     end
 end

@@ -11,19 +11,15 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :todo_user_id %>
+    <%= form.label :content %>
+    <%= form.text_area :content, id: :todo_content %>
   </div>
 
   <div class="field">
     <%= form.label :done %>
     <%= form.check_box :done, id: :todo_done %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :todo_content %>
   </div>
 
   <div class="actions">
