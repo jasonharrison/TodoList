@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class TodosControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
   setup do
+    sign_in users(:one)
     @todo = todos(:one)
   end
 
@@ -17,7 +19,7 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create todo" do
     assert_difference('Todo.count') do
-      post todos_url, params: { todo: { content: @todo.content, done: @todo.done, user_id: @todo.user_id } }
+      post todos_url, params: { todo: { content: @todo.content, done: @todo.done } }
     end
 
     assert_redirected_to todo_url(Todo.last)
