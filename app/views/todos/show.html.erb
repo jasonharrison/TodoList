@@ -5,8 +5,9 @@
 </p>
 
 <p>
-  <strong>Done:</strong>
-  <%= @todo.done %>
+  <% if !@todo.done %>
+    <strong>Not Done</strong>
+  <% end %>
 </p>
 
 

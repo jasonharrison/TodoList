@@ -5,8 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Content</th>
-      <th>Done</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -15,7 +13,12 @@
     <% @todos.each do |todo| %>
       <tr>
         <td><%= todo.content %></td>
-        <td><%= todo.done %></td>
+        <td><%= check_box_tag :done, todo.id, todo.done,
+        data: {
+          remote: true,
+          url: url_for(action: :toggle, id: todo.id),
+          method: "POST"
+        } %></td>
         <td><%= link_to 'Show', todo %></td>
         <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
         <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>

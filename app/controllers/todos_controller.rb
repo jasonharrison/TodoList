@@ -1,6 +1,6 @@
 class TodosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_todo, only: [:show, :edit, :update, :destroy]
+  before_action :set_todo, only: [:show, :edit, :update, :toggle, :destroy]
 
   # GET /todos
   # GET /todos.json
@@ -49,6 +49,15 @@ class TodosController < ApplicationController
         format.html { render :edit }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # POST /toggle
+  # POST toggle.json
+  def toggle
+    if !@todo.update(:done => params[:done])
+      format.html { redirect_to @todo, notice: 'Could not update todo.' }
+      format.json { render json: @todo.errors, status: :unprocessable_entity }
     end
   end
 
