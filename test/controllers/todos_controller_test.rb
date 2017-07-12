@@ -36,7 +36,7 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update todo" do
-    patch todo_url(@todo), params: { todo: { content: @todo.content, done: @todo.done, user_id: @todo.user_id } }
+    patch todo_url(@todo), params: { todo: { content: @todo.content, done: @todo.done } }
     assert_redirected_to todo_url(@todo)
   end
 
