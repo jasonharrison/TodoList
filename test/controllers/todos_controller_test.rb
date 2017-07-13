@@ -42,7 +42,6 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
 
   test "should mark todo completed" do
     assert_difference('Todo.where(done: true).count') do
-      puts toggle_todo_url(@todo)
       post toggle_todo_url(@todo), params: { done: true }
     end
 
