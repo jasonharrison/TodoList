@@ -2,6 +2,15 @@
 
 <h1>Todos</h1>
 
+<% if params[:done].present? != true %>
+  <%= link_to "Show uncompleted tasks", todos_path(done: false) %>
+  <%= link_to "Show completed tasks", todos_path(done: true) %>
+<% elsif params[:done] == "true" %>
+  <%= link_to "Show uncompleted", todos_path(done: false) %> | <%= link_to "Show all", todos_path %>
+<% elsif params[:done] == "false" %>
+  <%= link_to "Show completed", todos_path(done: true) %> | <%= link_to "Show all", todos_path %>
+<% end %>
+
 <table>
   <thead>
     <tr>

@@ -6,6 +6,9 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = current_user.todos.all
+    if params.key?(:done) && %w(true false).include?(params[:done])
+      @todos = @todos.where(done: ActiveModel::Type::Boolean.new.cast(params[:done])) #
+    end
   end
 
   # GET /todos/1
@@ -55,9 +58,11 @@ class TodosController < ApplicationController
   # POST /toggle
   # POST toggle.json
   def toggle
-    if !@todo.update(:done => params[:done])
-      format.html { redirect_to @todo, notice: 'Could not update todo.' }
-      format.json { render json: @todo.errors, status: :unprocessable_entity }
+    unless @todo.update(done: params[:done])
+      respond_to do |format|
+        format.html { redirect_to @todo, notice: 'Could not update todo.' }
+        format.json { render json: @todo.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -79,6 +84,6 @@ class TodosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:done, :content)
+      params.require(:todo).permit(:done, :content, :done)
     end
 end
