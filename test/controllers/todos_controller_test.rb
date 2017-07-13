@@ -40,6 +40,15 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to todo_url(@todo)
   end
 
+  test "should mark todo completed" do
+    assert_difference('Todo.where(done: true).count') do
+      puts toggle_todo_url(@todo)
+      post toggle_todo_url(@todo), params: { done: true }
+    end
+
+    assert_response :no_content
+  end
+
   test "should destroy todo" do
     assert_difference('Todo.count', -1) do
       delete todo_url(@todo)
