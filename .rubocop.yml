@@ -3,5 +3,5 @@ inherit_gem:
     - config/rails.yml
 
 Style/StringLiterals:
-  Enabled: true
+  Enabled: false
   EnforcedStyle: single_quotes
