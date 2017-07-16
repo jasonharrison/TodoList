@@ -58,9 +58,12 @@ class TodosController < ApplicationController
   # POST /toggle
   # POST toggle.json
   def toggle
-    unless @todo.update(done: params[:done])
-      respond_to do |format|
-        format.html { redirect_to @todo, notice: 'Could not update todo.' }
+    respond_to do |format|
+      if @todo.update(done: params[:done])
+        format.js { flash.now[:notice] = "Todo updated" }
+        format.json { render :show, status: :ok, location: @todo }
+      else
+        format.js { flash.now[:notice] = "Failed to update todo" }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
