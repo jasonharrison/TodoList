@@ -1,1 +1,5 @@
-$("#status<%= @todo.id.to_s %>").html('<%= j render partial: "shared/notice", locals: { id: "status"+@todo.id.to_s, content: flash[:notice] } %>').show().delay(1000).fadeOut('slow')
+<% if flash.key? :alert %>
+$("#status<%= @todo.id.to_s %>").html('<div id="error_explanation"><h2><%= flash[:alert] %></h2></div>')
+<% else %>
+$("#status<%= @todo.id.to_s %>").html('<%= j render partial: "shared/notice", locals: { id: "status"+@todo.id.to_s, content: flash[:content] } %>').show().delay(1000).fadeOut('slow')
+<% end %>

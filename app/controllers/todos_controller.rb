@@ -60,10 +60,10 @@ class TodosController < ApplicationController
   def toggle
     respond_to do |format|
       if @todo.update(done: params[:done])
-        format.js { flash.now[:notice] = "Todo updated" }
+        format.js { flash.now[:content] = "Todo updated" }
         format.json { render :show, status: :ok, location: @todo }
       else
-        format.js { flash.now[:notice] = "Failed to update todo" }
+        format.js { flash.now[:alert] = "Failed to update todo" }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
