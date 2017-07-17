@@ -1,4 +1,4 @@
-<%= render partial: "shared/notice" %>
+<%= render partial: "shared/notice", locals: { id: "notice", content: notice } %>
 
 <h1>Todos</h1>
 
@@ -31,6 +31,7 @@
         <td><%= link_to 'Show', todo %></td>
         <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
         <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= render partial: "shared/notice", locals: { id: "status"+todo.id.to_s, content: notice } %></td>
       </tr>
     <% end %>
   </tbody>

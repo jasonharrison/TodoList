@@ -1,1 +1,1 @@
-$("#notice").html('<%= j render partial: "shared/notice" %>');
+$("#status<%= @todo.id.to_s %>").html('<%= j render partial: "shared/notice", locals: { id: "status"+@todo.id.to_s, content: flash[:notice] } %>').show().delay(1000).fadeOut('slow')
