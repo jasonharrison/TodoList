@@ -7,7 +7,7 @@ class TodosController < ApplicationController
   def index
     @todos = current_user.todos.all
     if params.key?(:done) && %w(true false).include?(params[:done])
-      @todos = @todos.where(done: ActiveModel::Type::Boolean.new.cast(params[:done])) #
+      @todos = @todos.where(done: ActiveModel::Type::Boolean.new.cast(params[:done]))
     end
   end
 
