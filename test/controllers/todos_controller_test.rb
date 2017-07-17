@@ -45,7 +45,7 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
       post toggle_todo_url(@todo), params: { done: true }
     end
 
-    assert_response :no_content
+    assert_response :success
   end
 
   test "should destroy todo" do
