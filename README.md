@@ -1,24 +1,8 @@
-# README
+## TodoList
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple [Ruby on Rails](http://rubyonrails.org/) project demonstrating:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* User authentication with [Devise](https://github.com/plataformatec/devise)
+* Data validation, relationships, and persistence with [Active Record](https://github.com/rails/rails/tree/master/activerecord)
+* [check_box_tag](http://api.rubyonrails.org/v5.1/classes/ActionView/Helpers/FormTagHelper.html#method-i-check_box_tag) submission with [AJAX](https://www.w3schools.com/xml/ajax_intro.asp)
+* Testing with [ActionDispatch::IntegrationTest](http://api.rubyonrails.org/v5.1.2/classes/ActionDispatch/IntegrationTest.html)
